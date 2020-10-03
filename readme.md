@@ -4,7 +4,7 @@
 ## About data
 Tobii eyetrackerで取得したデータに関する重要項目
 
-**[AH] Event Column**
+**[34/AH] Event Column**
 | イベント内容 | イベント名 |
 |---|---|
 | レコーディング開始 | `RecordingStart` |
@@ -16,21 +16,21 @@ Tobii eyetrackerで取得したデータに関する重要項目
 |---|---|
 | マウスイベント発生 | `MouseEvent` |
 
-**[AI] Event value**
+**[35/AI] Event value**
 | イベント内容 | イベント名 |
 |---|---|
 | 黒背景閲覧 | `black` |
 | ウェブページ閲覧（サイト名） | `C01-01-PASMO etc.` |
 | マウスイベント | `Down, Left, Up, Right` |
 
-**[BP] Presented Stimulus name**
+**[68/BP] Presented Stimulus name**
 | イベント内容 | イベント名 |
 |---|---|
 | キャリブレーション | `Eyetracker Calibration` |
 | 黒背景閲覧 | `black` |
 | ウェブページ閲覧（サイト名） | `C01-01-PASMO etc.` |
 
-**[BQ] Presented Media name**
+**[69/BQ] Presented Media name**
 | イベント内容 | イベント名 |
 |---|---|
 | 黒背景ファイル名 | `black.jpg` |
@@ -40,5 +40,5 @@ Tobii eyetrackerで取得したデータに関する重要項目
 **Fixation point**
 | カラム数 | カラム名 | イベント名 |
 |---|---|---|
-| CA | Fixation point X | X座標の視線座標 |
-| CB | Fixation point Y | Y座標の視線座標 |
+| 79 / CA | Fixation point X | X座標の視線座標 |
+| 80 / CB | Fixation point Y | Y座標の視線座標 |
