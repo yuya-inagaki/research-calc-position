@@ -20,3 +20,19 @@ class Fixation:
 
     def is_fixation(self):
         return self.eye_movement_type == 'Fixation'
+
+
+class FixationEvent:
+    def __init__(self, data):
+        self.event_value = data[35]
+        self.fixation_count = 0
+        self.fixation_sum_x = 0
+        self.fixation_sum_y = 0
+
+    def add_fixation(self, data):
+        self.fixation_count += 1
+        self.fixation_sum_x += data[79]
+        self.fixation_sum_y += data[80]
+
+    def average_position(self):
+        return (self.fixation_sum_x / self.fixation_count, self.fixation_sum_y / self.fixation_count)
