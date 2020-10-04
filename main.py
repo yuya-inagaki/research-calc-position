@@ -3,7 +3,7 @@ import pandas as pd
 import fixation as fixation
 
 print('Loading data file')
-df = pd.read_excel('data/sample_min.xlsx')
+df = pd.read_excel('data/sample/sample_min.xlsx')
 
 for row in df.itertuples():
     fixation_count = 0
