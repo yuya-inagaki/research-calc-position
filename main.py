@@ -5,7 +5,7 @@ import result as rt
 
 
 print('Loading data file')
-df = pd.read_excel('data/Yuya Inagaki - set01 Recording5.xlsx')
+df = pd.read_excel('data/Yuya Inagaki - set14 Recording5.xlsx')
 
 # setting
 fixation_event = None
