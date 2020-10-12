@@ -21,6 +21,21 @@ color07 = (0, 127, 127)
 white_img = np.zeros(size, dtype=np.uint8)
 white_img.fill(255)
 
+cv2.putText(white_img, 'type1', (10, 30), cv2.FONT_HERSHEY_SIMPLEX,
+            0.7, color01, 1, cv2.LINE_AA)
+cv2.putText(white_img, 'type2', (10, 60), cv2.FONT_HERSHEY_SIMPLEX,
+            0.7, color02, 1, cv2.LINE_AA)
+cv2.putText(white_img, 'type3', (10, 90), cv2.FONT_HERSHEY_SIMPLEX,
+            0.7, color03, 1, cv2.LINE_AA)
+cv2.putText(white_img, 'type4', (10, 120), cv2.FONT_HERSHEY_SIMPLEX,
+            0.7, color04, 1, cv2.LINE_AA)
+cv2.putText(white_img, 'type5', (10, 150), cv2.FONT_HERSHEY_SIMPLEX,
+            0.7, color05, 1, cv2.LINE_AA)
+cv2.putText(white_img, 'type6', (10, 180), cv2.FONT_HERSHEY_SIMPLEX,
+            0.7, color06, 1, cv2.LINE_AA)
+cv2.putText(white_img, 'type7', (10, 210), cv2.FONT_HERSHEY_SIMPLEX,
+            0.7, color07, 1, cv2.LINE_AA)
+
 for row in df.itertuples():
     if row[17] == 1:
         cv2.drawMarker(white_img, (int(row[18]), int(row[19])), color01,
