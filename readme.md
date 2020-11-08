@@ -50,3 +50,16 @@ Tobii eyetrackerで取得したデータに関する重要項目
 |---|---|---|
 | 79 / CA | Fixation point X | X座標の視線座標 |
 | 80 / CB | Fixation point Y | Y座標の視線座標 |
+
+
+**Timestamp**
+- Aカラムに `ms` で記録
+- 基本的に10秒間記録している為それぞれの視線データを `10000ms` 分記録している
+- 最初の５秒間を取得したい場合は `5000ms` 分取得すれば問題ない
+
+
+# ToDo
+## 取得する座標の検討
+- 現在はFixationのみ取得しているがFixationだけでは座標情報が少ない（物によっては前半5000msに存在しないものもある）
+- Saccadeも含める必要があるかどうかを検討する
+- [参考リンク](https://www.tobiipro.com/learn-and-support/learn/eye-tracking-essentials/types-of-eye-movements/)

@@ -2,37 +2,65 @@
 import pandas as pd
 import fixation as ft
 import result as rt
+import os
 
-
-print('Loading data file')
-df = pd.read_excel('data/Yuya Inagaki - set14 Recording5.xlsx')
+# mode
+# 0: all data (default)
+# 1: first 5 seconds
 
 # setting
-fixation_event = None
-calibration_flag = False
-result = rt.Result()
+MODE = 1
+DATA_PATH = 'data'
 
-for row in df.itertuples():
-    fixation = ft.Fixation(row)
+# Main Process
 
-    if (fixation.event == 'Eye tracker Calibration end'):
-        print('calibration completed')
-        calibration_flag = True
-    if not calibration_flag:
-        continue
 
-    if fixation.is_event():
-        print(fixation.event)
-        if(fixation.event == 'ImageStimulusStart'):
-            fixation_event = ft.FixationEvent(row)
-        elif(fixation.event == 'ImageStimulusEnd'):
-            if(fixation_event.event_value != 'black'):
-                fixation_position = fixation_event.average_position()
+def process(file_name):
+    print(file_name)
 
-                result.add_data(id=fixation_event.get_stimules_id(), participant_name=fixation.participant_name,
-                                fixation_ave_x=fixation_position[0], fixation_ave_y=fixation_position[1])
-    else:
-        if fixation.is_fixation():
-            fixation_event.add_fixation(row)
+    # setting
+    fixation_event = None
+    calibration_flag = False
+    result = rt.Result()
 
-result.save_sheet()
+    print('Loading data file')
+    df = pd.read_excel('data/' + file_name)
+
+    for row in df.itertuples():
+        fixation = ft.Fixation(row)
+
+        if (fixation.event == 'Eye tracker Calibration end'):
+            print('calibration completed')
+            calibration_flag = True
+        if not calibration_flag:
+            continue
+
+        if fixation.is_event():
+            print(fixation.event)
+            if(fixation.event == 'ImageStimulusStart'):
+                fixation_event = ft.FixationEvent(row)
+            elif(fixation.event == 'ImageStimulusEnd'):
+                if(fixation_event.event_value != 'black'):
+                    fixation_position = fixation_event.average_position()
+
+                    # write data on result.xlsx
+                    result.add_data(id=fixation_event.get_stimules_id(), participant_name=fixation.participant_name,
+                                    fixation_ave_x=fixation_position[0], fixation_ave_y=fixation_position[1])
+        else:
+            if fixation.is_fixation():
+                required_data = True
+
+                if(MODE == 1):
+                    if(fixation.timestamp - fixation_event.start_time > 5000):
+                        required_data = False
+                if(required_data):
+                    fixation_event.add_fixation(row)
+
+    result.save_sheet()
+
+
+# Listed directory
+files = os.listdir(DATA_PATH)
+for file in files:
+    if not os.path.isdir(DATA_PATH + "\\" + file) and (file[-4:] == '.xls' or file[-5:] == '.xlsx'):
+        process(file)

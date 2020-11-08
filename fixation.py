@@ -7,6 +7,7 @@ import numpy as np
 
 class Fixation:
     def __init__(self, data):
+        self.timestamp = data[1]
         self.participant_name = data[4]
         self.event = data[34]
         self.event_value = data[35]
@@ -21,10 +22,12 @@ class Fixation:
 
     def is_fixation(self):
         return self.eye_movement_type == 'Fixation'
+        # ToDo Consider include not only Fixation but also Saccade event
 
 
 class FixationEvent:
     def __init__(self, data):
+        self.start_time = data[1]
         self.event_value = data[35]
         self.stimules_name = ''
         self.fixation_count = 0
@@ -40,9 +43,15 @@ class FixationEvent:
 
     def average_position(self):
         if self.event_value == 'black':
-            return(self.fixation_sum_x / self.fixation_count, self.fixation_sum_y / self.fixation_count)
+            if self.fixation_count == 0:
+                return ('error', 'error')
+            else:
+                return(self.fixation_sum_x / self.fixation_count, self.fixation_sum_y / self.fixation_count)
         else:
-            return ((self.fixation_sum_x / self.fixation_count)-99, self.fixation_sum_y / self.fixation_count)
+            if self.fixation_count == 0:
+                return ('error', 'error')
+            else:
+                return ((self.fixation_sum_x / self.fixation_count)-99, self.fixation_sum_y / self.fixation_count)
 
     def get_stimules_id(self):
         if self.stimules_name == 'black':
