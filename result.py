@@ -6,7 +6,7 @@ import openpyxl
 
 class Result:
     def __init__(self):
-        self.file_name = 'result/result.xlsx'
+        self.file_name = 'result/result_0-5.xlsx'
         self.wb = openpyxl.load_workbook(self.file_name)
         self.sheet = self.wb['result']
         print(type(self.sheet))
