@@ -12,7 +12,7 @@ print(cv2.__version__)
 print('Loading data file')
 df = pd.read_excel('result/' + DATA_FILE_NAME)
 
-size = 1080, 1920, 3
+size = 1080, 1920-99*2, 3
 color = (0, 0, 0)
 
 type1 = TypeCollection('type1', color, size)

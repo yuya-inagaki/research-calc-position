@@ -79,6 +79,7 @@ class TypeCollection:
 
   # 座標の追加
   def AddCenterPoint(self, coordinate_x: float, coordinate_y: float):
+    coordinate_x -= 99
     self.sum_coordinate_x += coordinate_x
     self.sum_coordinate_y += coordinate_y
     self.number_of_coordinates += 1
