@@ -6,7 +6,7 @@ import numpy as np
 print(cv2.__version__)
 
 print('Loading data file')
-df = pd.read_excel('result/result.xlsx')
+df = pd.read_excel('result/result_2s-1.xlsx')
 
 size = 1080, 1920, 3
 color01 = (0, 255, 255)
@@ -61,6 +61,6 @@ for row in df.itertuples():
 
 cv2.namedWindow("white image", cv2.WINDOW_NORMAL)
 cv2.imshow("white image", white_img)
-cv2.imwrite('result/test.png', white_img)
+cv2.imwrite('result/visual_4-6.png', white_img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

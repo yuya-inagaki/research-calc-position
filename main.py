@@ -7,9 +7,14 @@ import os
 # mode
 # 0: all data (default)
 # 1: first 5 seconds
+# 2: first 3 seconds
+# 3: last 5 seconds
+# 4: 4 - 6 seconds
+# 5: 7 - 10 seconds
+# 6: test seconds
 
 # setting
-MODE = 1
+MODE = 6
 DATA_PATH = 'data'
 
 # Main Process
@@ -51,10 +56,25 @@ def process(file_name):
                 required_data = True
 
                 if(MODE == 1):
-                    if(fixation.timestamp - fixation_event.start_time > 5000):
-                        required_data = False
+                  if(fixation.timestamp - fixation_event.start_time > 5000):
+                    required_data = False
+                elif(MODE == 2):
+                  if(fixation.timestamp - fixation_event.start_time > 3000):
+                    required_data = False
+                elif(MODE == 3):
+                  if(fixation.timestamp - fixation_event.start_time < 5000):
+                    required_data = False
+                elif(MODE == 4):
+                  if(fixation.timestamp - fixation_event.start_time > 6000 or fixation.timestamp - fixation_event.start_time < 3000):
+                    required_data = False
+                elif(MODE == 5):
+                  if(fixation.timestamp - fixation_event.start_time < 6000):
+                    required_data = False
+                elif(MODE == 6):
+                  if(fixation.timestamp - fixation_event.start_time < 8000):
+                    required_data = False
                 if(required_data):
-                    fixation_event.add_fixation(row)
+                  fixation_event.add_fixation(row)
 
     result.save_sheet()
 

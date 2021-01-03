@@ -5,8 +5,8 @@ import numpy as np
 from fixation import TypeCollection
 
 # setting
-DATA_FILE_NAME = 'result_2s-1.xlsx'
-FOLDER_NAME = 'visual_2s-1'
+DATA_FILE_NAME = 'result_2s-5.xlsx'
+FOLDER_NAME = 'visual_2s-5'
 
 print(cv2.__version__)
 print('Loading data file')
