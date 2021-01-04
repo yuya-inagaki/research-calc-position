@@ -15,7 +15,7 @@ import os
 
 # setting
 MODE = 6
-DATA_PATH = 'data'
+DATA_PATH = 'data/eye-tracker'
 
 # Main Process
 
@@ -29,7 +29,7 @@ def process(file_name):
     result = rt.Result()
 
     print('Loading data file')
-    df = pd.read_excel('data/' + file_name)
+    df = pd.read_excel(DATA_PATH + '/' + file_name)
 
     for row in df.itertuples():
         fixation = ft.Fixation(row)

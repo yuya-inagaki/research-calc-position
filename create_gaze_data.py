@@ -1,4 +1,6 @@
 # coding: utf-8
+# Tobii eye-tracker のデータから視線データ座標をCSVに抽出するプログラム
+
 import pandas as pd
 import os
 

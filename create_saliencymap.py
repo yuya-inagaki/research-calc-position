@@ -1,4 +1,6 @@
 # coding: utf-8
+# CSVの視線データから顕著性マップの生成
+
 from scipy import stats, integrate
 import numpy as np
 import seaborn as sns
