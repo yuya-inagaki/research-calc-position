@@ -13,7 +13,7 @@ def process(file_name):
   print(file_name)
 
   print('Loading data file')
-  df = pd.read_excel(DATA_PATH + '/' + file_name)
+  df = pd.read_excel(DATA_PATH + '/eye-tracker/' + file_name)
   
   for row in df.itertuples():
     event_name = row[76]
@@ -26,7 +26,7 @@ def process(file_name):
     Csv(file_path, row)
 
 # Listed directory
-files = os.listdir(DATA_PATH)
+files = os.listdir(DATA_PATH + '/eye-tracker')
 for file in files:
   if not os.path.isdir(DATA_PATH + "\\" + file) and (file[-4:] == '.xls' or file[-5:] == '.xlsx'):
     process(file)
